@@ -27,8 +27,8 @@ AnalogInputPin cdsCell(FEHIO::P0_0);
 AnalogInputPin leftOpto(FEHIO::P1_0);
 AnalogInputPin rightOpto(FEHIO::P1_7);
 
-DigitalInputPin forkLimitUp(FEHIO::P3_1);
-DigitalInputPin forkLimitDown(FEHIO::P0_3);
+DigitalInputPin forkLimitUp(FEHIO::P3_1);   //active low
+DigitalInputPin forkLimitDown(FEHIO::P0_3); //active high
 
 float forkliftPos;
 
@@ -158,17 +158,16 @@ void Lift(float distance)
 {
     forklift.SetPercent(100 * (distance/abs(distance)));
     float msec = 0;
-    // if(forkLimit.Value() <= 0){
-    //     Sleep(50);
-    //     msec += 50;
-    // }
-    while(msec / 1000 < abs(distance) && (forkLimitDown.Value() < 1 || distance > 0)){
+    while((msec / 1000 < abs(distance)) && (forkLimitDown.Value() < 1 || distance > 0) && (forkLimitUp.Value() > 0 || distance < 0)){
         Sleep(10);
-        LCD.Clear();
-        LCD.WriteLine(msec / 1000);
         msec += 10;
     }
-    // Sleep(abs(distance));
+    // LCD.Clear();
+    // LCD.WriteLine(msec / 1000);
+    // LCD.Write("Top: ");
+    // LCD.WriteLine(forkLimitUp.Value());
+    // LCD.Write("Bot: ");
+    // LCD.WriteLine(forkLimitDown.Value());
     forklift.Stop();
     Sleep(50);
 }
@@ -182,8 +181,17 @@ void LiftBottom()
 
 int main()
 {
+    //backwards
+    //Drive(3, 0, 40, -40, 2);
+
+    //forwards
+    //Drive(3, 0, -40, 40, 2);
     //back, right, left
-    Lift(1);
+    while(true){
+        Lift(0.25);
+        Lift(-0.25);
+    }
+    
     // Drive(3, 0, 20, -20, 2);
     // Drive(3, 0, -20, 20, 1);
     // Drive(4.8, -40, -40, -40, 10);
