@@ -90,8 +90,8 @@ void Drive(float distance, float speedBack, float speedRight, float speedLeft, f
         if(speedMult < 1){
             speedMult += 0.02;
         }
-        if(avgTraveled > 0.91){
-            speedMult = 1 - (avgTraveled - 0.91) * 10;
+        if(avgTraveled > 0.93){
+            speedMult = 1 - (avgTraveled - 0.93) * 8;
         }
         if(backDist != 0){
             backPercent = backShaft.Counts()/backDist;
@@ -181,35 +181,48 @@ void LiftBottom()
 
 int main()
 {
+    Sleep(2);
     //backwards
-    //Drive(3, 0, 40, -40, 2);
+    //Drive(3, 0, 40, -40, 10);
 
     //forwards
-    //Drive(3, 0, -40, 40, 2);
+    //Drive(3, 0, -40, 40, 10);
     //back, right, left
     
-    Drive(3, 0, 20, -20, 1.5);
-    Drive(3, 0, -20, 20, 2);
-    Drive(4.8, -40, -40, -40, 10);
-    Drive(12.8, 0, -40, 40, 1);
-    Drive(7.4, 40, -40, 0, 10);
-    for(int i = 0; i < 3; i++){
-        Lift(-0.8);
-        Drive(3, 0, 40, -40, 2);
-        Lift(0.8);
-        Drive(3.5, 0, -40, 40, 2);
-    }
-    Lift(-0.6);
-    Drive(3, 0, 40, -40, 2);
-    Lift(-0.4);
-    Drive(3.5, 0, -40, 40, 2);
-    for(int i = 0; i < 3; i++){
-        Lift(0.8);
-        Drive(3, 0, 40, -40, 2);
-        Lift(-0.8);
-        Drive(3.5, 0, -40, 40, 2);
-    }
-    Drive(20, 40, 40, 40, 3);
+    // Drive(3, 0, 20, -20, 1.5);
+    // Drive(3, 0, -20, 20, 2);
+    // Drive(4.8, -40, -40, -40, 10);
+    // Drive(12.8, 0, -40, 40, 1);
+    // Drive(7.4, 40, -40, 0, 10);
+    // for(int i = 0; i < 3; i++){
+    //     Lift(-0.8);
+    //     Drive(3, 0, 40, -40, 2);
+    //     Lift(0.8);
+    //     Drive(3.5, 0, -40, 40, 2);
+    // }
+    // Lift(-0.6);
+    // Drive(3, 0, 40, -40, 2);
+    // Lift(-0.4);
+    // Drive(3.5, 0, -40, 40, 2);
+    // for(int i = 0; i < 3; i++){
+    //     Lift(0.8);
+    //     Drive(3, 0, 40, -40, 2);
+    //     Lift(-0.8);
+    //     Drive(3.5, 0, -40, 40, 2);
+    // }
+    // Drive(10, 40, 40, 40, 3);
+
+    // Drive(9, 40, 40, 40, 3);
+    // Drive(31, 0, -40, 40, 5);
+    // Drive(8, -40, -40, -40, 3);
+    // Drive(12.5, 0, -20, 20, 2);
+    // Lift(0);
+    // Drive(39, 0, 43, -37, 5);
+    // Drive(8.8, 40, 40, 40, 3);
+    // Drive(30, 0, -60, 60, 5);
+
+    Drive(35, 25, 55, -25, 10);
+    Drive(20, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 5);
 }
 
 // Lift(0.6);
