@@ -200,41 +200,48 @@ int main()
     //while(cdsCell.Value() > 0.7 && TimeNow() < 30){}
 
     //Drive to composter
-    Drive(3, 0, 20, -20, 1.5);
+    Drive(3, 0, 20, -20, 1);
     Drive(3, 0, -20, 20, 3);
     Drive(4.8, -40, -40, -40, 10);
-    Drive(13, 0, -40, 40, 3);
+    Drive(13.2, 0, -40, 40, 4);
     Drive(6.9, 40, -40, 0, 10);
     //Spin composter
-    for(int i = 0; i < 3; i++){
-        Lift(-0.8);
-        Drive(2.5, -30, -30, -30, 3);
-        Drive(1.7, 30, 30, 30, 3);
+    Lift(-0.8);
+    Drive(2.5, -30, -30, -30, 3);
+    Drive(1.7, 30, 30, 30, 3);
+    Drive(2, 0, 40, -40, 2);
+    Lift(0.8);
+    Drive(2, 0, -40, 40, 2);
+    Lift(-0.8);
+    Drive(2.5, -30, -30, -30, 3);
+    Drive(1.7, 30, 30, 30, 3);
+    Drive(2, 0, 40, -40, 2);
+    Lift(0.8);
+    Drive(2.1, 0, -40, 40, 2);
+    Drive(1.5, 20, -20 * cos(ToRadian(60)), -20 * cos(ToRadian(60)), 2);
+    Lift(-0.8);
+    Drive(3.1, -30, -30, -30, 3);
+    Drive(2.5, 30, 30, 30, 3);
+    //Bonus
+    Lift(0.8);
+    Drive(3.1, -30, -30, -30, 3);
+    Drive(2.5, 30, 30, 30, 3);
+    for(int i = 0; i < 2; i++){
         Drive(2, 0, 40, -40, 2);
+        Lift(-0.8);
+        Drive(2.05, 0, -40, 40, 2);
         Lift(0.8);
-        Drive(2, 0, -40, 40, 2);
+        Drive(3.4, -30, -30, -30, 3);
+        Drive(2.35, 30, 30, 30, 3);
     }
-    //should be -0.6 if doing bonus
-    Lift(-0.65);
     Drive(3, 0, 40, -40, 2);
     //Composter bonus, commented out for errors
-    //Lift(-0.4);
-    // Drive(3.5, 0, -40, 40, 2);
-        // for(int i = 0; i < 3; i++){
-        //     Lift(0.8);
-        //     Drive(3, 0, 40, -40, 2);
-        //     Lift(-0.8);
-        //     Drive(3.5, 0, -40, 40, 2);
-        // }
-
-    // Drive(3, 0, 40, -40, 2);
-    //Lift(0.45);
 
     //Move to apples
     Drive(9, 40, 40, 40, 3);
     Drive(31, 0, -40, 40, 5);
-    Lift(0.175);
-    Drive(8.5, -40, -40, -40, 3);
+    Lift(-0.35);
+    Drive(8, -40, -40, -40, 3);
     Drive(21, 0, -20, 20, 3.5);
     //Grab apples
     Lift(0.4);
@@ -246,40 +253,41 @@ int main()
     
     Drive(11.5, 40, 40, 40, 3);
     //Move up ramp
-    Drive(30, 0, -57, 63, 5);
+    Drive(30, 0, -56, 64, 5);
     Lift(1.75);
+    //Drive(3, -50, 50 * cos(ToRadian(60)), 50 * cos(ToRadian(60)), 2);
     //Deposit apples
-    Drive(40, 0, -37, 43, 3);
-    Lift(-0.35);
+    Drive(40, 0, -40, 40, 3);
+    Lift(-0.4);
     //Drive to window
-    Drive(26, 35, 55, -35, 10);
-    Lift(-0.9);
+    Drive(27, 35, 55, -35, 10);
+    Lift(-0.85);
     Drive(9.5, 40, 40, 40, 3);
     Drive(8, 0, -40, 40, 10);
     //Extra speed to ram the window
     Drive(10, -84, 80 * cos(ToRadian(60)) + 4, 80 * cos(ToRadian(60)) + 4, 3);
     //Move to button
     Drive(15, 18, -42, -42, 10);
-    Drive(4, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 3);
-    Drive(15, 0, 40, -40, 4);
+    Drive(3, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 1.5);
+    Drive(15, 0, 40, -40, 1);
     //Move to humidifier
     Drive(3, 0, -40, 40, 3);
     Drive(17, -40, -40, -40, 3);
     Drive(14.5, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 3);
     Lift(0.3);
-    Drive(12, 0, -40, 40, 10);
+    Drive(16, 0, -40, 40, 10);
     Lift(-0.8);
-    Drive(5, 0, 40, -40, 10);
+    Drive(5.5, 0, 40, -40, 10);
     Lift(-0.5);
-    Drive(5, 0, -40, 40, 10);
-    Sleep(5.0);
-    Lift(1.2);
+    Sleep(4.5);
+    Drive(5.5, 0, -40, 40, 10);
+    Lift(1.1);
     //Bring it home
-    Drive(48, 0, 50, -50, 10);
-    Drive(4, 40, 40, 40, 3);
-    Drive(70, 0, 50, -50, 10);
+    Drive(48, 0, 50, -50, 4);
+    Drive(4.3, 40, 40, 40, 3);
+    Drive(70, 0, 50, -50, 3);
     Drive(10, -40, -40, -40, 3);
     Drive(5, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 2);
     Drive(30, 40, 40, 40, 3);
-    Drive(20, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 4);
+    Drive(3, 0, -40, 40, 10);
 }
