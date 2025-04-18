@@ -192,13 +192,16 @@ int main()
     //back, right, left
 
     //Initialize and level forklift
-    //RCS.InitializeTouchMenu("0800A5DYF");
+    
     Sleep(2);
     LiftBottom();
     Lift(0.65);
+    RCS.InitializeTouchMenu("0800A5DYF");
+    int lever = RCS.GetLever();
+    LCD.WriteLine(lever);
     ResetTime();
-    //while(cdsCell.Value() > 0.7 && TimeNow() < 30){}
-
+    /*
+    while(cdsCell.Value() > 0.7 && TimeNow() < 30){}
     //Drive to composter
     Drive(3, 0, 20, -20, 1);
     Drive(3, 0, -20, 20, 3);
@@ -235,7 +238,6 @@ int main()
         Drive(2.35, 30, 30, 30, 3);
     }
     Drive(3, 0, 40, -40, 2);
-    //Composter bonus, commented out for errors
 
     //Move to apples
     Drive(9, 40, 40, 40, 3);
@@ -254,6 +256,7 @@ int main()
     Drive(11.5, 40, 40, 40, 3);
     //Move up ramp
     Drive(30, 0, -56, 64, 5);
+    */
     Lift(1.75);
     //Drive(3, -50, 50 * cos(ToRadian(60)), 50 * cos(ToRadian(60)), 2);
     //Deposit apples
@@ -265,29 +268,51 @@ int main()
     Drive(9.5, 40, 40, 40, 3);
     Drive(8, 0, -40, 40, 10);
     //Extra speed to ram the window
-    Drive(10, -84, 80 * cos(ToRadian(60)) + 4, 80 * cos(ToRadian(60)) + 4, 3);
+    Drive(8, -84, 80 * cos(ToRadian(60)) + 4, 80 * cos(ToRadian(60)) + 4, 3);
     //Move to button
-    Drive(15, 18, -42, -42, 10);
-    Drive(3, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 1.5);
+    Drive(17, 19, -41, -41, 10);
+    Sleep(0.5);
+    bool buttonRed = true;
+    if(cdsCell.Value() > 0.7){
+        buttonRed = false;
+    }
+    if(buttonRed){
+        Drive(3, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 1.5);
+        Drive(15, 0, 40, -40, 1);
+    } else {
+        Drive(3, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 1.5);
+        Drive(15, 0, 40, -40, 1);
+        Drive(6, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 1.5);
+    }
     Drive(15, 0, 40, -40, 1);
     //Move to humidifier
     Drive(3, 0, -40, 40, 3);
     Drive(17, -40, -40, -40, 3);
-    Drive(14.5, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 3);
+
+    Drive(8.5 + 6 * lever, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 3);
     Lift(0.3);
-    Drive(16, 0, -40, 40, 10);
+    Drive(14.5, 0, -40, 40, 10);
     Lift(-0.8);
     Drive(5.5, 0, 40, -40, 10);
     Lift(-0.5);
     Sleep(4.5);
     Drive(5.5, 0, -40, 40, 10);
     Lift(1.1);
+    Drive(2, 0, 40, -40, 2);
+    Drive(2 + 6 * lever, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 3);
+    Drive(17, -40, -40, -40, 3);
+    Drive(25, 0, -50, 50, 4);
+    //Ram window again
+    Drive(8, 84, -80 * cos(ToRadian(60)) + 4, -80 * cos(ToRadian(60)) + 4, 3);
     //Bring it home
-    Drive(48, 0, 50, -50, 4);
-    Drive(4.3, 40, 40, 40, 3);
-    Drive(70, 0, 50, -50, 3);
-    Drive(10, -40, -40, -40, 3);
-    Drive(5, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 2);
-    Drive(30, 40, 40, 40, 3);
-    Drive(3, 0, -40, 40, 10);
+
+
+
+    // Drive(48, 0, 50, -50, 4);
+    // Drive(4.3, 40, 40, 40, 3);
+    // Drive(70, 0, 50, -50, 3);
+    // Drive(10, -40, -40, -40, 3);
+    // Drive(5, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 2);
+    // Drive(30, 40, 40, 40, 3);
+    // Drive(3, 0, -40, 40, 10);
 }
