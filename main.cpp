@@ -192,12 +192,12 @@ int main()
     //back, right, left
 
     //Initialize and level forklift
-    //RCS.InitializeTouchMenu("0800A5DYF");
+    RCS.InitializeTouchMenu("0800A5DYF");
     Sleep(2);
     LiftBottom();
     Lift(0.65);
     ResetTime();
-    //while(cdsCell.Value() > 0.7 && TimeNow() < 30){}
+    while(cdsCell.Value() > 0.7 && TimeNow() < 30){}
 
     //Drive to composter
     Drive(3, 0, 20, -20, 1);
@@ -226,6 +226,7 @@ int main()
     Lift(0.8);
     Drive(3.1, -30, -30, -30, 3);
     Drive(2.5, 30, 30, 30, 3);
+    Drive(1.5, 20, -20 * cos(ToRadian(60)), -20 * cos(ToRadian(60)), 2);
     for(int i = 0; i < 2; i++){
         Drive(2, 0, 40, -40, 2);
         Lift(-0.8);
@@ -260,20 +261,20 @@ int main()
     Drive(40, 0, -40, 40, 3);
     Lift(-0.4);
     //Drive to window
-    Drive(27, 35, 55, -35, 10);
+    Drive(26.5, 35, 55, -35, 10);
     Lift(-0.85);
     Drive(9.5, 40, 40, 40, 3);
-    Drive(8, 0, -40, 40, 10);
+    Drive(10, 0, -40, 40, 10);
     //Extra speed to ram the window
-    Drive(10, -84, 80 * cos(ToRadian(60)) + 4, 80 * cos(ToRadian(60)) + 4, 3);
+    Drive(9, -84, 80 * cos(ToRadian(60)) + 4, 80 * cos(ToRadian(60)) + 4, 2);
     //Move to button
     Drive(15, 18, -42, -42, 10);
     Drive(3, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 1.5);
     Drive(15, 0, 40, -40, 1);
     //Move to humidifier
     Drive(3, 0, -40, 40, 3);
-    Drive(17, -40, -40, -40, 3);
-    Drive(14.5, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 3);
+    Drive(17.5, -40, -40, -40, 3);
+    Drive(14, -40, 40 * cos(ToRadian(60)), 40 * cos(ToRadian(60)), 3);
     Lift(0.3);
     Drive(16, 0, -40, 40, 10);
     Lift(-0.8);
@@ -284,10 +285,13 @@ int main()
     Lift(1.1);
     //Bring it home
     Drive(48, 0, 50, -50, 4);
-    Drive(4.3, 40, 40, 40, 3);
+    Drive(4, 40, 40, 40, 3);
     Drive(70, 0, 50, -50, 3);
-    Drive(10, -40, -40, -40, 3);
-    Drive(5, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 2);
-    Drive(30, 40, 40, 40, 3);
-    Drive(3, 0, -40, 40, 10);
+    Drive(6, 40, -40, 0, 2);
+    Drive(10, 0, 40, -40, 3);
+
+    // Drive(10, -40, -40, -40, 3);
+    // Drive(5, 40, -40 * cos(ToRadian(60)), -40 * cos(ToRadian(60)), 2);
+    // Drive(30, 40, 40, 40, 3);
+    // Drive(3, 0, -40, 40, 10);
 }
